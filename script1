@@ -1,0 +1,31 @@
+#!/bin/bash
+
+researcher()
+{
+for i in `ls`
+do
+	if [ -d $i ]
+		then
+			echo "Directory $i"
+			cd $i
+			researcher
+			cd ..
+	elif [ -f $i ]
+		then 
+			echo "File $i"
+	fi
+done
+}
+
+if [ $# == 0 ] 
+        then
+        researcher
+elif [ $# == 1 ]
+        then
+	cd $1
+	echo "Going in directory: $1"
+        researcher
+else
+	echo "Too many parametrs : $0 "
+fi
+
